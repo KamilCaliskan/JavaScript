@@ -16,6 +16,36 @@ function getAverage(scores) {
     // Return the calculated average
     return average;
 }
+function getGrade(score) {
+    if (score === 100) {
+        return "A++";
+    } else if (score >= 90) {
+        return "A";
+    } else if (score >= 80) {
+        return "B";
+    } else if (score >= 70) {
+        return "C";
+    } else if (score >= 60) {
+        return "D";
+    } else {
+        return "F";
+    }
+}
+function hasPassingGrade(score) {
+    // Get the letter grade using the getGrade function
+    const grade = getGrade(score);
+    // Check if the grade is not "F"
+    return grade !== "F";
+}
+
+// Test the function with different scores
+console.log(getGrade(100)); // Expected output: "A++"
+console.log(getGrade(95));  // Expected output: "A"
+console.log(getGrade(85));  // Expected output: "B"
+console.log(getGrade(75));  // Expected output: "C"
+console.log(getGrade(65));  // Expected output: "D"
+console.log(getGrade(55));  // Expected output: "F"
+
 
 // Test the function with provided test cases
 console.log(getAverage([92, 88, 12, 77, 57, 100, 67, 38, 97, 89])); // Expected output: 71.7
