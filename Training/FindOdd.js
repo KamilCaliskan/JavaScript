@@ -2,6 +2,8 @@ function findOdd(A) {
   return A.reduce((acc, num) => acc ^ num, 0);
 }
 
+console.log(findOdd([1, 2, 2, 3, 1, 3, 3])); // Output: 3
+
 
 
 
