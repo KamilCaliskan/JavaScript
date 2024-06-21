@@ -1,6 +1,6 @@
-// helloWorld.js
 function helloWorld() {
-  console.log("Hello, world!");
+  const str = "Hello World!";
+  console.log(str);
 }
 
 module.exports = helloWorld;
