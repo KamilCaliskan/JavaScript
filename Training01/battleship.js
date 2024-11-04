@@ -1,3 +1,4 @@
+//Battleship field validator
 function validateBattlefield(field) {
     const shipSizes = { 1: 0, 2: 0, 3: 0, 4: 0 }; // Counts for ships of each size
     
