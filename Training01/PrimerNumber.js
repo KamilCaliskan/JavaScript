@@ -1,37 +1,25 @@
 class Primes {
   static *stream() {
-    // Yield the first few known primes to start
-    yield 2;
-    yield 3;
-    yield 5;
-    yield 7;
+    const limit = 10000000;  // Define the limit to generate primes up to 10 million
+    const sieve = new Array(limit).fill(true);  // Create a boolean array for the sieve
+    sieve[0] = sieve[1] = false;  // 0 and 1 are not primes
 
-    const primes = [2, 3, 5, 7]; // Start with a few small known primes
-    let num = 9;                 // Start testing from the next odd number
-
-    while (true) {
-      let isPrime = true;
-
-      // Only check divisibility up to the square root of `num`
-      const limit = Math.sqrt(num);
-      for (let p of primes) {
-        if (p > limit) break;
-        if (num % p === 0) {
-          isPrime = false;
-          break;
+    // Sieve of Eratosthenes algorithm
+    for (let i = 2; i <= Math.sqrt(limit); i++) {
+      if (sieve[i]) {
+        for (let j = i * i; j < limit; j += i) {
+          sieve[j] = false;  // Mark multiples of i as non-prime
         }
       }
+    }
 
-      if (isPrime) {
-        primes.push(num);
-        yield num;
-      }
-
-      num += 2; // Skip even numbers
+    // Yield all primes up to the limit
+    for (let i = 2; i < limit; i++) {
+      if (sieve[i]) yield i;
     }
   }
 }
 
-// Example usage: Fetching the first 10 primes
+// Usage example to get the first 10 primes
 const primeStream = Primes.stream();
 console.log([...Array(10)].map(() => primeStream.next().value));
